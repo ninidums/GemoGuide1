@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="ka">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GemoGuide</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body>
+
+<nav>
+    <div class="logo">Gemo<span>Guide</span></div>
+
+    <div class="nav-links">
+        <a href="index.html">მთავარი</a>
+        <a href="restaurants.html">რესტორნები</a>
+        <a href="index.html#dishes-section">კერძები</a>
+        <a href="evaluations.html">შეფასებები</a>
+        <button id="langToggle">EN</button>
+    </div>
+</nav>
+
+<section class="hero">
+    <div class="badge" id="heroBadge">პროფესიონალური შეფასება</div>
+
+    <h1><span id="heroTitle1">საქართველოს საუკეთესო</span> <span id="heroTitleSpan">კერძები</span></h1>
+
+    <p id="heroSubtitle">პროფესიონალი შემფასებლების მიერ შეფასებული რესტორნები და კერძები.</p>
+
+    <div class="search-box">
+        <input id="searchInput" type="text" placeholder="მოძებნე კერძი ან რესტორანი">
+        <button id="searchBtn">ძიება</button>
+    </div>
+</section>
+
+<section class="stats-section">
+
+    <div class="stat-card">
+        <h3 id="restaurantCount">0</h3>
+        <p id="restaurantLabel">რესტორანი</p>
+    </div>
+
+    <div class="stat-card">
+        <h3 id="dishCount">0</h3>
+        <p id="dishLabel">კერძი</p>
+    </div>
+
+    <div class="stat-card">
+        <h3 id="inspectorCount">0</h3>
+        <p id="inspectorLabel">შემფასებელი</p>
+    </div>
+
+    <div class="stat-card">
+        <h3 id="evaluationCount">0</h3>
+        <p id="evaluationLabel">შეფასება</p>
+    </div>
+
+</section>
+
+<section class="cards-section">
+
+    <h2 id="top5Heading">TOP 5 კერძი</h2>
+
+    <div id="top-list"></div>
+
+</section>
+
+<section class="cards-section" id="dishes-section">
+    <h2 id="bestRatedHeading">საუკეთესო შეფასებული კერძები</h2>
+
+    <div class="category-filter" id="categoryFilter"></div>
+
+    <div id="card-list"></div>
+</section>
+
+<script src="i18n.js"></script>
+<script src="script.js"></script>
+</body>
+</html>

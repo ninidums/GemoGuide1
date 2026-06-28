@@ -1,0 +1,384 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+:root{
+    --bg:#0c0c0c;
+    --bg2:#121212;
+    --bg3:#1a1a1a;
+    --gold:#c9a96e;
+    --gold2:#e2c28a;
+    --text:#f2ede4;
+    --text2:#9a8a78;
+    --border:#252525;
+}
+
+body{
+    background:var(--bg);
+    color:var(--text);
+    font-family:Arial, sans-serif;
+}
+
+a:focus-visible,
+button:focus-visible,
+input:focus-visible{
+    outline:2px solid var(--gold2);
+    outline-offset:2px;
+}
+
+nav{
+    height:70px;
+    background:var(--bg2);
+    border-bottom:1px solid var(--border);
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:0 60px;
+    flex-wrap:wrap;
+}
+
+.logo{
+    font-size:26px;
+    font-weight:bold;
+}
+
+.logo span{
+    color:var(--gold);
+}
+
+.nav-links{
+    display:flex;
+    align-items:center;
+    gap:25px;
+}
+
+.nav-links a{
+    color:var(--text2);
+    text-decoration:none;
+    font-size:14px;
+}
+
+.nav-links a:hover{
+    color:var(--gold);
+}
+
+#langToggle{
+    background:transparent;
+    border:1px solid var(--border);
+    color:var(--text2);
+    font-size:12px;
+    font-weight:bold;
+    padding:6px 14px;
+    border-radius:20px;
+    cursor:pointer;
+    letter-spacing:0.5px;
+}
+
+#langToggle:hover{
+    border-color:var(--gold);
+    color:var(--gold);
+}
+
+.hero{
+    text-align:center;
+    padding:90px 20px 70px;
+}
+
+.badge{
+    display:inline-block;
+    color:var(--gold);
+    border:1px solid var(--gold);
+    padding:8px 18px;
+    border-radius:25px;
+    font-size:12px;
+    margin-bottom:25px;
+}
+
+.hero h1{
+    font-size:52px;
+    margin-bottom:20px;
+}
+
+.hero h1 span{
+    color:var(--gold);
+}
+
+.hero p{
+    color:var(--text2);
+    margin-bottom:35px;
+}
+
+.search-box{
+    display:flex;
+    justify-content:center;
+    gap:10px;
+    flex-wrap:wrap;
+}
+
+.search-box input{
+    width:350px;
+    padding:14px;
+    background:var(--bg3);
+    border:1px solid var(--border);
+    border-radius:12px;
+    color:var(--text);
+}
+
+.search-box button{
+    padding:14px 28px;
+    border:none;
+    border-radius:12px;
+    background:var(--gold);
+    color:var(--bg);
+    font-weight:bold;
+    cursor:pointer;
+}
+
+.search-box button:hover{
+    background:var(--gold2);
+}
+
+.cards-section{
+    padding:40px 60px;
+    scroll-margin-top:90px;
+}
+
+.cards-section h2{
+    margin-bottom:25px;
+    color:var(--text);
+}
+
+.section-note{
+    color:var(--text2);
+    font-size:13px;
+    margin-bottom:20px;
+    max-width:640px;
+    line-height:1.5;
+}
+
+#card-list{
+    display:flex;
+    gap:20px;
+    flex-wrap:wrap;
+}
+
+.card{
+    width:280px;
+    background:var(--bg2);
+    border:1px solid var(--border);
+    border-radius:15px;
+    padding:22px;
+}
+
+.card h3{
+    color:var(--gold);
+    margin-bottom:10px;
+}
+
+.card p{
+    color:var(--text2);
+    margin-bottom:8px;
+}
+
+.card-location{
+    font-size:12px;
+    color:var(--text2);
+    margin-top:-6px;
+    margin-bottom:12px;
+}
+
+.rating{
+    font-size:28px;
+    color:var(--gold);
+    font-weight:bold;
+    margin-top:15px;
+}
+
+#restaurant-list{
+    display:flex;
+    gap:20px;
+    flex-wrap:wrap;
+}
+
+#inspector-list{
+    display:flex;
+    gap:20px;
+    flex-wrap:wrap;
+}
+
+#evaluation-list{
+    display:flex;
+    gap:20px;
+    flex-wrap:wrap;
+}
+
+.admin-form{
+    max-width:500px;
+    display:flex;
+    flex-direction:column;
+    gap:14px;
+}
+
+.admin-form input{
+    padding:14px;
+    border-radius:12px;
+    border:1px solid var(--border);
+    background:var(--bg3);
+    color:var(--text);
+}
+
+.admin-form select{
+    padding:14px;
+    border-radius:12px;
+    border:1px solid var(--border);
+    background:var(--bg3);
+    color:var(--text);
+    font-family:inherit;
+    font-size:14px;
+}
+
+.admin-form button{
+    padding:14px;
+    border:none;
+    border-radius:12px;
+    background:var(--gold);
+    color:var(--bg);
+    font-weight:bold;
+    cursor:pointer;
+}
+
+.admin-form button:hover{
+    background:var(--gold2);
+}
+
+#adminMessage{
+    margin-top:18px;
+    color:var(--gold);
+    font-weight:bold;
+}
+.stats-section{
+    display:flex;
+    justify-content:center;
+    gap:20px;
+    flex-wrap:wrap;
+    padding:30px;
+}
+
+.stat-card{
+    width:220px;
+    background:var(--bg2);
+    border:1px solid var(--border);
+    border-radius:15px;
+    padding:25px;
+    text-align:center;
+}
+
+.stat-card h3{
+    color:var(--gold);
+    font-size:36px;
+    margin-bottom:10px;
+}
+
+#top-list{
+    display:flex;
+    gap:20px;
+    flex-wrap:wrap;
+}
+
+/* --- კერძების კატეგორიების ფილტრი --- */
+.category-filter{
+    display:flex;
+    gap:12px;
+    flex-wrap:wrap;
+    margin-bottom:25px;
+}
+
+.category-btn{
+    padding:10px 20px;
+    border-radius:20px;
+    border:1px solid var(--border);
+    background:var(--bg3);
+    color:var(--text2);
+    font-size:13px;
+    cursor:pointer;
+}
+
+.category-btn:hover{
+    border-color:var(--gold);
+    color:var(--gold);
+}
+
+.category-btn.active{
+    background:var(--gold);
+    border-color:var(--gold);
+    color:var(--bg);
+    font-weight:bold;
+}
+
+/* --- შეფასების ვიზუალური ზოლები --- */
+.score-row{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    margin-bottom:8px;
+}
+
+.score-row .score-label{
+    width:150px;
+    flex-shrink:0;
+    font-size:13px;
+    color:var(--text2);
+}
+
+.score-bar-track{
+    flex:1;
+    height:8px;
+    background:var(--bg3);
+    border-radius:6px;
+    overflow:hidden;
+}
+
+.score-bar-fill{
+    height:100%;
+    background:linear-gradient(90deg, var(--gold), var(--gold2));
+    border-radius:6px;
+}
+
+.score-row .score-value{
+    width:34px;
+    flex-shrink:0;
+    text-align:right;
+    font-size:13px;
+    color:var(--text);
+    font-weight:bold;
+}
+
+.evaluation-card{
+    width:320px;
+}
+
+.evaluation-card .total-score{
+    margin-top:14px;
+    margin-bottom:14px;
+}
+
+@media (max-width: 720px){
+    nav{
+        padding:0 20px;
+        height:auto;
+        flex-direction:column;
+        gap:12px;
+        padding-top:14px;
+        padding-bottom:14px;
+    }
+
+    .cards-section{
+        padding:30px 20px;
+    }
+
+    .search-box input{
+        width:100%;
+    }
+}

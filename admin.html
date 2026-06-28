@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="ka">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GemoGuide - ადმინისტრატორი</title>
+
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body>
+
+<nav>
+    <div class="logo">Gemo<span>Guide</span></div>
+
+    <div class="nav-links">
+        <a href="index.html">მთავარი</a>
+        <a href="restaurants.html">რესტორნები</a>
+        <a href="index.html#dishes-section">კერძები</a>
+        <a href="evaluations.html">შეფასებები</a>
+        <button id="langToggle">EN</button>
+    </div>
+</nav>
+
+<section class="cards-section">
+
+    <p class="section-note">
+        ეს გვერდი ჯერ არ მოიცავს სრულყოფილ ავტორიზაციას და განკუთვნილია მხოლოდ საცდელი ვერსიის დემონსტრირებისთვის.
+    </p>
+
+    <h2>ახალი რესტორნის დამატება</h2>
+
+    <div class="admin-form">
+        <input id="restaurantName" type="text" placeholder="რესტორნის სახელი">
+        <input id="restaurantCity" type="text" placeholder="ქალაქი">
+        <input id="restaurantAddress" type="text" placeholder="მისამართი">
+        <input id="restaurantCuisine" type="text" placeholder="სამზარეულოს ტიპი">
+
+        <button id="addRestaurantBtn">რესტორნის დამატება</button>
+    </div>
+
+    <p id="adminMessage"></p>
+
+    <hr style="border-color:var(--border); margin:35px 0;">
+
+    <h2>ახალი კერძის დამატება</h2>
+
+    <div class="admin-form">
+
+        <input id="dishRestaurantId" type="number" placeholder="რესტორნის ID">
+
+        <input id="dishName" type="text" placeholder="კერძის სახელი">
+
+        <select id="dishType">
+            <option value="ხინკალი">ხინკალი</option>
+            <option value="ხაჭაპური">ხაჭაპური</option>
+            <option value="მწვადი">მწვადი</option>
+            <option value="ქართული სუპი">ქართული სუპი</option>
+            <option value="სალათი">სალათი</option>
+            <option value="ღვინო">ღვინო</option>
+        </select>
+
+        <input id="dishPrice" type="number" placeholder="ფასი">
+
+        <button id="addDishBtn">
+            კერძის დამატება
+        </button>
+
+    </div>
+
+    <p id="dishMessage"></p>
+
+</section>
+
+<script src="i18n.js"></script>
+<script src="admin.js"></script>
+
+</body>
+</html>
