@@ -3,6 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="GemoGuide — ადმინისტრაციული გვერდი ახალი რესტორნისა და კერძის დამატებისთვის.">
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
     <title>GemoGuide - ადმინისტრატორი</title>
 
     <link rel="stylesheet" href="style.css">
@@ -35,6 +37,7 @@
         <input id="restaurantCity" type="text" placeholder="ქალაქი">
         <input id="restaurantAddress" type="text" placeholder="მისამართი">
         <input id="restaurantCuisine" type="text" placeholder="სამზარეულოს ტიპი">
+        <input id="restaurantImage" type="text" placeholder="ფოტოს ბმული (არასავალდებულო)">
 
         <button id="addRestaurantBtn">რესტორნის დამატება</button>
     </div>
@@ -55,12 +58,13 @@
             <option value="ხინკალი">ხინკალი</option>
             <option value="ხაჭაპური">ხაჭაპური</option>
             <option value="მწვადი">მწვადი</option>
-            <option value="ქართული სუპი">ქართული სუპი</option>
+            <option value="წვნიანი">წვნიანი</option>
             <option value="სალათი">სალათი</option>
-            <option value="ღვინო">ღვინო</option>
         </select>
 
         <input id="dishPrice" type="number" placeholder="ფასი">
+
+        <input id="dishImage" type="text" placeholder="ფოტოს ბმული (არასავალდებულო)">
 
         <button id="addDishBtn">
             კერძის დამატება
@@ -72,8 +76,13 @@
 
 </section>
 
+<footer>
+    <p>GemoGuide — საბაკალავრო პროექტი | &copy; 2026</p>
+</footer>
+
 <script src="i18n.js"></script>
 <script src="admin.js"></script>
+
 
 </body>
 </html>

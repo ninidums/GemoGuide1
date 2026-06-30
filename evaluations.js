@@ -1,5 +1,5 @@
-const SUPABASE_URL = "https://khdkidxttlfxlnpgxlxr.supabase.co";
-const SUPABASE_KEY = "sb_publishable_mZ1mTBsgmZQ-exwDHqB35Q_nubl6_hm";
+const SUPABASE_URL = "https://lgqtgsjktccvplmkxwzk.supabase.co";
+const SUPABASE_KEY = "sb_publishable_dPPLqeAATNdMrcwsIsG2ZQ_iK1k_EPI";
 
 const supabaseClient = supabase.createClient(
     SUPABASE_URL,
@@ -7,6 +7,11 @@ const supabaseClient = supabase.createClient(
 );
 
 const evaluationList = document.getElementById("evaluation-list");
+const evaluationPagination = document.getElementById("evaluationPagination");
+
+const EVALUATIONS_PER_PAGE = 4;
+
+let currentEvaluationPage = 1;
 
 // ნაშრომი (4.6, 3.9): შემფასებლის ვინაობა საჯარო ინტერფეისში არ ქვეყნდება.
 // ეს არ არის მხოლოდ ვიზუალური დამალვა — inspectors ცხრილზე მითითება საერთოდ
@@ -31,9 +36,9 @@ function scoreRowHTML(geLabel, enLabel, score) {
 function evaluationCardHTML(item) {
     return `
         <div class="card evaluation-card">
-            <h3>${item.dishes?.name || pick("კერძი", "Dish")}</h3>
+            <h3>${item.dishes?.name ? escapeHtml(item.dishes.name) : pick("კერძი", "Dish")}</h3>
 
-            <p><strong>${pick("ვიზიტის თარიღი:", "Visit date:")}</strong> ${item.visit_date || ""}</p>
+            <p><strong>${pick("ვიზიტის თარიღი:", "Visit date:")}</strong> ${escapeHtml(item.visit_date)}</p>
 
             ${scoreRowHTML("შიგთავსი", "Filling", item.score_filling)}
             ${scoreRowHTML("ცომი", "Dough", item.score_dough)}
@@ -44,7 +49,7 @@ function evaluationCardHTML(item) {
 
             <div class="rating total-score">${item.total_score != null ? item.total_score : "—"} / 10</div>
 
-            <p><strong>${pick("კომენტარი:", "Comment:")}</strong> ${item.comment || ""}</p>
+            <p><strong>${pick("კომენტარი:", "Comment:")}</strong> ${escapeHtml(item.comment)}</p>
         </div>
     `;
 }
@@ -54,12 +59,36 @@ function showEvaluations(evaluations) {
 
     if (evaluations.length === 0) {
         evaluationList.innerHTML = `<p class="section-note">${pick("შეფასება არ მოიძებნა.", "No evaluations found.")}</p>`;
+        evaluationPagination.innerHTML = "";
         return;
     }
 
-    evaluations.forEach(function (item) {
+    const start = (currentEvaluationPage - 1) * EVALUATIONS_PER_PAGE;
+    const pageItems = evaluations.slice(start, start + EVALUATIONS_PER_PAGE);
+
+    pageItems.forEach(function (item) {
         evaluationList.innerHTML += evaluationCardHTML(item);
     });
+
+    renderEvaluationPagination(evaluations.length);
+}
+
+function renderEvaluationPagination(totalItems) {
+    evaluationPagination.innerHTML = "";
+
+    const totalPages = Math.ceil(totalItems / EVALUATIONS_PER_PAGE);
+    if (totalPages <= 1) return;
+
+    for (let i = 1; i <= totalPages; i++) {
+        const btn = document.createElement("button");
+        btn.className = "page-btn" + (i === currentEvaluationPage ? " active" : "");
+        btn.textContent = i;
+        btn.addEventListener("click", function () {
+            currentEvaluationPage = i;
+            showEvaluations(allEvaluations);
+        });
+        evaluationPagination.appendChild(btn);
+    }
 }
 
 async function loadEvaluations() {

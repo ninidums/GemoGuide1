@@ -58,6 +58,7 @@ nav{
     color:var(--text2);
     text-decoration:none;
     font-size:14px;
+    transition:color 0.2s ease;
 }
 
 .nav-links a:hover{
@@ -134,6 +135,7 @@ nav{
     color:var(--bg);
     font-weight:bold;
     cursor:pointer;
+    transition:background 0.2s ease;
 }
 
 .search-box button:hover{
@@ -170,6 +172,21 @@ nav{
     border:1px solid var(--border);
     border-radius:15px;
     padding:22px;
+    transition:transform 0.2s ease, border-color 0.2s ease;
+}
+
+.card:hover{
+    transform:translateY(-4px);
+    border-color:var(--gold);
+}
+
+.card-image{
+    width:100%;
+    height:160px;
+    object-fit:cover;
+    border-radius:10px;
+    margin-bottom:14px;
+    display:block;
 }
 
 .card h3{
@@ -273,6 +290,12 @@ nav{
     border-radius:15px;
     padding:25px;
     text-align:center;
+    transition:transform 0.2s ease, border-color 0.2s ease;
+}
+
+.stat-card:hover{
+    transform:translateY(-4px);
+    border-color:var(--gold);
 }
 
 .stat-card h3{
@@ -303,6 +326,7 @@ nav{
     color:var(--text2);
     font-size:13px;
     cursor:pointer;
+    transition:background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
 }
 
 .category-btn:hover{
@@ -364,6 +388,38 @@ nav{
     margin-bottom:14px;
 }
 
+/* --- გვერდები (pagination) --- */
+.pagination{
+    display:flex;
+    gap:10px;
+    margin-top:30px;
+    flex-wrap:wrap;
+}
+
+.page-btn{
+    width:38px;
+    height:38px;
+    border-radius:10px;
+    border:1px solid var(--border);
+    background:var(--bg3);
+    color:var(--text2);
+    font-size:14px;
+    cursor:pointer;
+    transition:background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+
+.page-btn:hover{
+    border-color:var(--gold);
+    color:var(--gold);
+}
+
+.page-btn.active{
+    background:var(--gold);
+    border-color:var(--gold);
+    color:var(--bg);
+    font-weight:bold;
+}
+
 @media (max-width: 720px){
     nav{
         padding:0 20px;
@@ -381,4 +437,13 @@ nav{
     .search-box input{
         width:100%;
     }
+}
+
+footer{
+    text-align:center;
+    padding:30px 20px;
+    margin-top:30px;
+    color:var(--text2);
+    font-size:13px;
+    border-top:1px solid var(--border);
 }

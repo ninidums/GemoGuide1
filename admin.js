@@ -1,4 +1,4 @@
-const SUPABASE_URL = "https://khdkidxttlfxlnpgxlxr.supabase.co";
+ const SUPABASE_URL = "https://khdkidxttlfxlnpgxlxr.supabase.co";
 const SUPABASE_KEY = "sb_publishable_mZ1mTBsgmZQ-exwDHqB35Q_nubl6_hm";
 
 const supabaseClient = supabase.createClient(
@@ -14,6 +14,7 @@ async function addRestaurant() {
     const city = document.getElementById("restaurantCity").value;
     const address = document.getElementById("restaurantAddress").value;
     const cuisine = document.getElementById("restaurantCuisine").value;
+    const image = document.getElementById("restaurantImage").value;
 
     if (name === "" || city === "") {
         adminMessage.textContent = "გთხოვ შეავსო რესტორნის სახელი და ქალაქი.";
@@ -27,7 +28,8 @@ async function addRestaurant() {
                 name: name,
                 city: city,
                 address: address,
-                cuisine_type: cuisine
+                cuisine_type: cuisine,
+                image_url: image || null
             }
         ]);
 
@@ -43,6 +45,7 @@ async function addRestaurant() {
     document.getElementById("restaurantCity").value = "";
     document.getElementById("restaurantAddress").value = "";
     document.getElementById("restaurantCuisine").value = "";
+    document.getElementById("restaurantImage").value = "";
 }
 
 addRestaurantBtn.addEventListener("click", addRestaurant);
@@ -62,6 +65,7 @@ async function addDish() {
     const dishName = document.getElementById("dishName").value;
     const dishType = document.getElementById("dishType").value;
     const dishPrice = document.getElementById("dishPrice").value;
+    const dishImage = document.getElementById("dishImage").value;
 
     if (restaurantId === "" || dishName === "") {
         dishMessage.textContent = "გთხოვ შეავსო რესტორნის ID და კერძის სახელი.";
@@ -76,7 +80,8 @@ async function addDish() {
                 restaurant_id: restaurantId,
                 name: dishName,
                 dish_type: dishType,
-                price: dishPrice
+                price: dishPrice,
+                image_url: dishImage || null
             }
         ]);
 
@@ -93,6 +98,7 @@ async function addDish() {
     document.getElementById("dishRestaurantId").value = "";
     document.getElementById("dishName").value = "";
     document.getElementById("dishPrice").value = "";
+    document.getElementById("dishImage").value = "";
 }
 
 addDishBtn.addEventListener("click", addDish);

@@ -14,6 +14,21 @@ function pick(geText, enText) {
     }
 }
 
+// admin გვერდს ჯერ არ აქვს სრულყოფილი ავტორიზაცია (იხ. ნაშრომი, 6.3) —
+// ანუ ნებისმიერს, ვინც ამ მისამართს იცის, შეუძლია მონაცემის დამატება.
+// ამიტომ ბაზიდან მოსული ტექსტი (სახელი, ქალაქი, კომენტარი და სხვ.) აქ
+// ყოველთვის უსაფრთხოდ ვწმენდთ, სანამ გვერდზე ჩაჯდება — წინააღმდეგ
+// შემთხვევაში ვინმეს შეეძლო რესტორნის სახელად კოდი ჩაეწერა.
+function escapeHtml(value) {
+    if (value == null) return "";
+    return String(value)
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#39;");
+}
+
 function updateNavText() {
     const homeLink = document.querySelector('a[href="index.html"]');
     if (homeLink) homeLink.textContent = pick("მთავარი", "Home");

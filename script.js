@@ -1,5 +1,5 @@
-const SUPABASE_URL = "https://khdkidxttlfxlnpgxlxr.supabase.co";
-const SUPABASE_KEY = "sb_publishable_mZ1mTBsgmZQ-exwDHqB35Q_nubl6_hm";
+const SUPABASE_URL = "https://lgqtgsjktccvplmkxwzk.supabase.co";
+const SUPABASE_KEY = "sb_publishable_dPPLqeAATNdMrcwsIsG2ZQ_iK1k_EPI";
 
 const supabaseClient = supabase.createClient(
     SUPABASE_URL,
@@ -9,14 +9,19 @@ const supabaseClient = supabase.createClient(
 const cardList = document.getElementById("card-list");
 const topList = document.getElementById("top-list");
 const categoryFilter = document.getElementById("categoryFilter");
+const dishPagination = document.getElementById("dishPagination");
 const searchInput = document.getElementById("searchInput");
 const searchBtn = document.getElementById("searchBtn");
 
 // კერძების კატეგორიები (ნაშრომი, 5.3): ხინკალი, ხაჭაპური, მწვადი, ქართული სუპი, სალათი, ღვინო
-const CATEGORIES = ["ხინკალი", "ხაჭაპური", "მწვადი", "ქართული სუპი", "სალათი", "ღვინო"];
+const CATEGORIES = ["ხინკალი", "ხაჭაპური", "მწვადი", "წვნიანი", "სალათი"];
+
+const DISHES_PER_PAGE = 4;
 
 let allDishes = [];
 let activeCategory = "all";
+let currentDishPage = 1;
+let lastFilteredDishes = [];
 
 // კერძის საშუალო შეფასება არ ინახება ხელით შეყვანილი მნიშვნელობით,
 // არამედ ითვლება მასთან დაკავშირებული პროფესიული შეფასებების (evaluations.total_score) საშუალოდან.
@@ -61,13 +66,15 @@ function dishCardHTML(item) {
     const ratingText = avg === null ? "—" : avg.toFixed(1) + " / 10";
     const restaurantName = item.restaurants?.name || pick("რესტორანი", "Restaurant");
     const restaurantCity = item.restaurants?.city || "";
+    const imageSrc = item.image_url || "placeholder-dish.svg";
 
     return `
         <div class="card">
-            <h3>${restaurantName}</h3>
-            ${restaurantCity ? `<p class="card-location">${restaurantCity}</p>` : ""}
-            <p><strong>${item.name}</strong></p>
-            <p>${item.dish_type || ""}</p>
+            <img class="card-image" src="${escapeHtml(imageSrc)}" alt="${escapeHtml(item.name)}" onerror="this.onerror=null; this.src='placeholder-dish.svg';">
+            <h3>${escapeHtml(restaurantName)}</h3>
+            ${restaurantCity ? `<p class="card-location">${escapeHtml(restaurantCity)}</p>` : ""}
+            <p><strong>${escapeHtml(item.name)}</strong></p>
+            <p>${escapeHtml(item.dish_type)}</p>
             <p>${item.price != null ? item.price + " ₾" : ""}</p>
             <div class="rating">${ratingText}</div>
         </div>
@@ -79,12 +86,36 @@ function showDishes(dishes) {
 
     if (dishes.length === 0) {
         cardList.innerHTML = `<p class="section-note">${pick("შედეგი არ მოიძებნა.", "No results found.")}</p>`;
+        dishPagination.innerHTML = "";
         return;
     }
 
-    dishes.forEach(function (item) {
+    const start = (currentDishPage - 1) * DISHES_PER_PAGE;
+    const pageItems = dishes.slice(start, start + DISHES_PER_PAGE);
+
+    pageItems.forEach(function (item) {
         cardList.innerHTML += dishCardHTML(item);
     });
+
+    renderDishPagination(dishes.length);
+}
+
+function renderDishPagination(totalItems) {
+    dishPagination.innerHTML = "";
+
+    const totalPages = Math.ceil(totalItems / DISHES_PER_PAGE);
+    if (totalPages <= 1) return;
+
+    for (let i = 1; i <= totalPages; i++) {
+        const btn = document.createElement("button");
+        btn.className = "page-btn" + (i === currentDishPage ? " active" : "");
+        btn.textContent = i;
+        btn.addEventListener("click", function () {
+            currentDishPage = i;
+            showDishes(lastFilteredDishes);
+        });
+        dishPagination.appendChild(btn);
+    }
 }
 
 function applyFilters() {
@@ -110,6 +141,8 @@ function applyFilters() {
         });
     }
 
+    currentDishPage = 1;
+    lastFilteredDishes = filtered;
     showDishes(filtered);
 }
 
@@ -128,6 +161,7 @@ async function loadDishes() {
     }
 
     allDishes = data;
+    lastFilteredDishes = data;
     showDishes(allDishes);
     renderTopDishes();
 }
@@ -151,12 +185,14 @@ function renderTopDishes() {
     ranked.forEach(function (entry) {
         const restaurantName = entry.item.restaurants?.name || pick("რესტორანი", "Restaurant");
         const restaurantCity = entry.item.restaurants?.city || "";
+        const imageSrc = entry.item.image_url || "placeholder-dish.svg";
 
         topList.innerHTML += `
             <div class="card">
-                <h3>${entry.item.name}</h3>
-                <p>${restaurantName}${restaurantCity ? " — " + restaurantCity : ""}</p>
-                <p>${entry.item.dish_type || ""}</p>
+                <img class="card-image" src="${escapeHtml(imageSrc)}" alt="${escapeHtml(entry.item.name)}" onerror="this.onerror=null; this.src='placeholder-dish.svg';">
+                <h3>${escapeHtml(entry.item.name)}</h3>
+                <p>${escapeHtml(restaurantName)}${restaurantCity ? " — " + escapeHtml(restaurantCity) : ""}</p>
+                <p>${escapeHtml(entry.item.dish_type)}</p>
                 <div class="rating">${entry.avg.toFixed(1)} / 10</div>
             </div>
         `;
