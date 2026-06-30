@@ -1,5 +1,5 @@
-const SUPABASE_URL = "https://lgqtgsjktccvplmkxwzk.supabase.co";
-const SUPABASE_KEY = "sb_publishable_dPPLqeAATNdMrcwsIsG2ZQ_iK1k_EPI";
+const SUPABASE_URL = "https://khdkidxttlfxlnpgxlxr.supabase.co";
+const SUPABASE_KEY = "sb_publishable_mZ1mTBsgmZQ-exwDHqB35Q_nubl6_hm";
 
 const supabaseClient = supabase.createClient(
     SUPABASE_URL,
@@ -114,10 +114,6 @@ async function loadEvaluations() {
 // საკუთარ ტექსტს.
 function updatePageText() {
     document.getElementById("evaluationsHeading").textContent = pick("კერძების შეფასებები", "Dish Evaluations");
-    document.getElementById("evaluationsNote").textContent = pick(
-        "შემფასებლის ვინაობა საჯაროდ არ ქვეყნდება — ქულები მონაცემთა ბაზაში ავტორთან არის დაკავშირებული მხოლოდ ჩანაწერების მართვისთვის.",
-        "Inspector identity is never published publicly — scores are linked to an author only inside the database, for record management."
-    );
     showEvaluations(allEvaluations);
 }
 
